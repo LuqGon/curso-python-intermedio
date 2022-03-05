@@ -83,7 +83,7 @@ def main():
     old_people = list(map(lambda worker : worker | {"old" : worker["age"]>70},DATA)) # el | permite unir diccionarios
    
 
-    for worker in old_people:
+    for worker in adults:
         print(worker)
 
 
