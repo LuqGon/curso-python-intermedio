@@ -1,1 +1,3 @@
 venv/
+guess_word/init_version
+guess_word/__pycache__
