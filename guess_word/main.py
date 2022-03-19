@@ -1,6 +1,5 @@
 from game import Game
 from player import Player
-from menu_ import *
 from menu_ import Menu
 from os import system
 import random_word
@@ -20,63 +19,61 @@ def title():
 
 def run():
     
-    title()
-
-    init_word,init_encryp_word,init_len_word = random_word.get()
-    name = input("Ingrese su nombre >")
-    system("clear")
-    gamer = Player(name,50)
-    guess_word = Game(init_word,init_encryp_word,init_len_word)
+    
+    name = 'Lucas'#input("Ingrese su nombre >")
+    gamer = Player()
     menu = Menu()
-
-    title()
-
-    print("Bienvenido",name)
+   
+    
     init_option = menu.init_menu()
-    if(init_option == 1):
-        status_word = guess_word.get_word()
+    while init_option == 1:
+        gamer.set_life(3)
+        init_word,init_encryp_word,init_len_word = random_word.get()
+        guess_word = Game(init_word,init_encryp_word,init_len_word)
+        guess_word.init_encryp_word()
+        unencryp_word = guess_word.get_word()
         status_encryp_word = guess_word.get_encryp_word()
         status_life = gamer.get_life() 
+        tracking_letters = guess_word.get__tracking_letter()
         flag = True
-        while (flag):
-            title()
+        while flag:  
+             
+            #title()
             print("Lifes:",("♥️"*status_life))
+            print("Letters:",tracking_letters)
             print(status_encryp_word)
             letter = input("Ingrese una letra >")#validar
             match_letter = guess_word.find_letter(letter.upper())
-            
             if (not(match_letter)):
                 gamer.life_lose()
                 continue_game = guess_word.look_life(gamer.get_life())
-
                 if (not(continue_game)):
                     flag = False
-                    
-            completed_game = guess_word.complete_word()
-
-            if(completed_game):
+            if(guess_word.complete_word()):
                 flag = False
-
             status_encryp_word = guess_word.get_encryp_word()
             status_life = gamer.get_life() 
-            
+            tracking_letters = guess_word.get__tracking_letter()
 
-        if (completed_game):
+        print("GANO?: ",guess_word.complete_word())
+        if (guess_word.complete_word()):
             print(status_encryp_word)
+            print ("Ganaste!")
             print()
-            print ("Ganaste")
-            print()
+            input("Press Enter to continue ")
         else:
+            flag = False
+            #title()
             print(status_encryp_word)
             print()
             print ("Perdiste")
             print()
-            print("La palabra era:",status_word)
+            print("La palabra era:",unencryp_word)
             print()
-    elif(init_option == 2):
-        print(gamer.get_name())
-    else:
-        print("Adios")  
+            init_option = menu.init_menu()
+                
+    print("Chau")
+
 if __name__ == "__main__":
     run()
     
