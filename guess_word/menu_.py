@@ -1,4 +1,3 @@
-import sys
 class Menu:
     def __init__(self):
         self.__option_init = 0
