@@ -1,10 +1,14 @@
 class Player:
-    def __init__(self,name,lifes):
-        self.__name = name
-        self.__life = lifes
+    def __init__(self):
+        self.__name = ''
+        self.__life = 0
 
     def get_life(self):
         return self.__life
+
+    def set_life(self,life):
+        self.__life = life
+
     def get_name(self):
         return self.__name
 
@@ -21,8 +25,8 @@ class Player:
         else:
             self.__life -= 1
             result = False
-        
         assert self.__life >= 0, "Error! Vida negativa"
+        
         return result
 
 

@@ -1,3 +1,4 @@
+import sys
 class Menu:
     def __init__(self):
         self.__option_init = 0
@@ -5,6 +6,7 @@ class Menu:
 
     def init_menu (self):
         '''Menu del juego'''
+        self.__option_init = 0
         while(self.__option_init < 1 or self.__option_init > 3):
            print("1. Jugar!")
            print("2. Puntaje")
